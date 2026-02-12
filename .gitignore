@@ -16,7 +16,6 @@ build/
 .venv
 
 # Models (these can be large, decide if you want to commit them later)
-*.zip
 *.pkl
 *.h5
 
