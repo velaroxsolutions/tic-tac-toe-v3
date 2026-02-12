@@ -49,7 +49,7 @@ function App() {
     await sleep(500)  // ← Wait 500ms (0.5 seconds) before AI responds
 
     // AI's turn - call backend
-    const response = await fetch('http://localhost:8000/predict', {
+    const response = await fetch('https://tic-tac-toe-10mb.onrender.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ board: newBoard })
