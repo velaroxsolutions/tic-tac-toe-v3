@@ -25,7 +25,7 @@ class BoardState(BaseModel):
 def load_model():
     global model
     model = MaskablePPO.load(
-        "models/tictactoe_ppo.zip",
+        "models/tictactoe_ppo",
         custom_objects={"clip_range": 0.2, "lr_schedule": 0.0003},
     )
 
