@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from sb3_contrib import MaskablePPO
 import numpy as np
 from fastapi.middleware.cors import CORSMiddleware  # ← Add this import
+import os
 
 
 app = FastAPI()
@@ -24,9 +25,14 @@ class BoardState(BaseModel):
 @app.on_event("startup")
 def load_model():
     global model
+    
+    # Get the directory where app.py lives
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(base_dir, "models", "tictactoe_ppo")
+    
     model = MaskablePPO.load(
-        "models/tictactoe_ppo",
-        custom_objects={"clip_range": 0.2, "lr_schedule": 0.0003},
+        model_path,
+        custom_objects={"clip_range": 0.2, "lr_schedule": 0.0003}
     )
 
 
